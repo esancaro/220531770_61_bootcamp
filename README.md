@@ -27,12 +27,14 @@ docker-compose down
 
 Raíz del servicio, desde una máquina local: `localhost:8080`. Despliega un comodín: 👽
 
+![get all](./README-img/request-root.png)
+
 GET /all :
 
 * Parámetros: ninguno
 * Devuelve: un JSON con la lista de todos los objetos de la base de datos. Cuando la base de datos es nueva, devuelve un arreglo vacío: []
 
-![get all](./README-img/request-root.png)
+![get all](./README-img/request-get-all.png)
 
 GET /one :
 
@@ -62,7 +64,7 @@ DELETE /one :
 El sistema devuelve una estructura JSON con la estructura:
 
 ```json
-{"status": "NOK", "message": "<detalle del error"}
+{"status": "NOK", "message": "<detalle del error>"}
 ```
 
 ## Detalles a considerar
@@ -78,6 +80,14 @@ Mongo
 Detalle del grupo de contenedores de compose. Mongo y Node.
 
 ![docker compose](./README-img/mongo-docker-compose-containers.png)
+
+kubectl
+
+![kubectl](./README-img/kubectl.png)
+
+minikube
+
+![minikube](./README-img/minikube.png)
 
 Línea de comandos con zsh
 
