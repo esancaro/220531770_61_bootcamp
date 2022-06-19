@@ -8,6 +8,11 @@
   https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/
   https://www.mongodb.com/docs/manual/tutorial/remove-documents/
   https://nodejs.org/api/process.html
+  For docker compose. Network connecting and host interfaces are unavailable for Windows docker.
+  https://stackoverflow.com/questions/66803166/i-have-mongo-db-in-a-docker-container-and-i-want-to-connect-my-app-which-is-runn
+  https://www.bogotobogo.com/DevOps/Docker/Docker-Compose-Node-MongoDB.php
+  https://docs.docker.com/compose/
+  https://stackoverflow.com/questions/51011552/mongodb-on-with-docker-failed-to-connect-to-server-localhost27017-on-first-c
 */
 
 const express = require("express");
@@ -17,6 +22,9 @@ const os = require("os");
 // Constants
 const hostname = "0.0.0.0";
 const port = 8080;
+
+const mongoHost = "mongo"; // please change to 'localhost' for testing from the debugger.
+const mongoPort = "27017";
 
 // App
 const app = express();
@@ -48,11 +56,13 @@ Your implementation here
 // // Connect to mongodb server
 const MongoClient = require("mongodb").MongoClient;
 // /* Your url connection to mongodb container */
-const url = "mongodb://localhost:27017/";
+const url = `mongodb://${mongoHost}:${mongoPort}/`;
 
 MongoClient.connect(url, (err, client) => {
   // original source : https://zellwk.com/blog/crud-express-mongodb/
-  if (err) return console.error(err);
+  if (err) {
+    return console.error(err);
+  }
   console.log("Connected to Database");
   const db = client.db("220531770_61_bootcamp");
   const bc = db.collection("bootcamp");

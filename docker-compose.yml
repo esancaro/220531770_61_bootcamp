@@ -1,0 +1,31 @@
+version: '3'
+services:
+  node:
+    restart: always
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/code
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+    links:
+      - mongo
+    networks:
+      - mongo-compose-network
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+    networks:
+      - mongo-compose-network
+volumes:
+ mongodb:
+
+networks:
+  mongo-compose-network:
+    driver: bridge
